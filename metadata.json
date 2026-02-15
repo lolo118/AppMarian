@@ -1,0 +1,8 @@
+{
+  "name": "PadelPro Trainer Hub",
+  "description": "A premium platform for Padel enthusiasts to learn from expert coaches, explore training programs, and seamlessly book sessions. Features an integrated AI Padel Assistant for personalized tips and scheduling help.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
