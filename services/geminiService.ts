@@ -2,31 +2,30 @@
 import { GoogleGenAI } from "@google/genai";
 import { TRAINER_INFO, LESSON_TYPES } from "../constants";
 
-// Inicialización segura siguiendo las directrices del SDK
 const getAIClient = () => {
   const apiKey = process.env.API_KEY;
   if (!apiKey) {
-    console.warn("API_KEY no configurada. El chat de IA no funcionará correctamente.");
+    console.warn("API_KEY no configurada.");
   }
   return new GoogleGenAI({ apiKey: apiKey || '' });
 };
 
 const SYSTEM_INSTRUCTION = `
-Eres el Asistente de IA para el entrenador de Pádel Carlos Méndez.
-Tu objetivo es ayudar a los usuarios a aprender sobre pádel, responder preguntas sobre la metodología de Carlos y animarlos a reservar una sesión.
+Eres el Asistente de IA para el entrenador de Pádel Mariano Witte en Santiago del Estero, Argentina.
+Tu objetivo es ayudar a los usuarios a aprender sobre pádel, responder preguntas técnicas y animarlos a reservar una clase.
 
-Información de Carlos:
+Información de Mariano:
 - Nombre: ${TRAINER_INFO.name}
 - Biografía: ${TRAINER_INFO.bio}
 - Especialidades: ${TRAINER_INFO.specialties.join(", ")}
-- Logros: ${TRAINER_INFO.achievements.join(", ")}
+- Experiencia: ${TRAINER_INFO.experience}
 
 Tipos de Clases:
 ${LESSON_TYPES.map(l => `- ${l.title}: ${l.description} ($${l.price}/${l.duration})`).join("\n")}
 
-Sé motivador, profesional y con un tono deportivo. Si preguntan por horarios, diles que usen el calendario de reservas en la sección "Reservar" de la web.
-Responde preguntas técnicas sobre pádel con consejos de experto sobre Bandejas, Víboras y posicionamiento.
-Mantén las respuestas concisas pero útiles. Responde siempre en español.
+Tono: Motivador, profesional, conocedor del deporte. Habla con terminología argentina (Clase, Cancha, Turno, Bandeja, Víbora).
+Si preguntan por horarios exactos, diles que inicien la reserva en la sección "Reservar Turno" de la web para ver la disponibilidad real.
+Mantén las respuestas concisas.
 `;
 
 export const getGeminiResponse = async (userMessage: string, history: { role: 'user' | 'model', text: string }[]) => {
@@ -43,6 +42,6 @@ export const getGeminiResponse = async (userMessage: string, history: { role: 'u
     return response.text;
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Estoy teniendo un pequeño problema con la conexión a la pista. ¡Por favor, asegúrate de que la clave de API esté configurada en Netlify!";
+    return "Hola! Mariano está en cancha ahora. Por favor consultá horarios en la sección de reserva o contactalo por WhatsApp.";
   }
 };

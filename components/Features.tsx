@@ -9,10 +9,10 @@ const Features: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <div className="relative group">
-              {/* Foto real de Mariano (usar la foto 6 o 7 donde se vea bien de cerca) */}
+              {/* Foto real (Festejo de Mariano) */}
               <img 
-                src="https://images.unsplash.com/photo-1610411322123-0189a6977465" 
-                alt="Mariano Witte" 
+                src="/images/about.jpg" 
+                alt="Mariano Witte Entrenando" 
                 className="rounded-3xl shadow-2xl z-10 relative transition-all duration-500 border border-white/5"
               />
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-lime-500/20 rounded-3xl -z-10 hidden sm:block border border-lime-500/30 group-hover:bg-lime-500/30 transition-colors"></div>
