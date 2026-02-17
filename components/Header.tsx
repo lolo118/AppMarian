@@ -8,15 +8,15 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-lime-500 rounded-lg flex items-center justify-center text-black font-bold text-xl shadow-[0_0_15px_rgba(132,204,22,0.4)]">
-              P
+              W
             </div>
-            <span className="text-xl font-bold tracking-tight text-white">PadelPro<span className="text-lime-400">Elite</span></span>
+            <span className="text-xl font-bold tracking-tight text-white">Witte<span className="text-lime-400">PadelPro</span></span>
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#about" className="text-slate-400 hover:text-lime-400 font-medium transition-colors">Sobre Carlos</a>
+            <a href="#about" className="text-slate-400 hover:text-lime-400 font-medium transition-colors">Mariano</a>
             <a href="#lessons" className="text-slate-400 hover:text-lime-400 font-medium transition-colors">Clases</a>
-            <a href="#pricing" className="text-slate-400 hover:text-lime-400 font-medium transition-colors">Precios</a>
-            <a href="#booking" className="bg-lime-500 text-black px-5 py-2 rounded-full font-bold hover:bg-lime-400 transition-all shadow-[0_0_10px_rgba(132,204,22,0.3)]">Reservar Ahora</a>
+            <a href="#pricing" className="text-slate-400 hover:text-lime-400 font-medium transition-colors">Packs</a>
+            <a href="#booking" className="bg-lime-500 text-black px-5 py-2 rounded-full font-bold hover:bg-lime-400 transition-all shadow-[0_0_10px_rgba(132,204,22,0.3)]">Reservar Turno</a>
           </nav>
           <div className="md:hidden">
             <button className="text-slate-400">

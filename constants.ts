@@ -2,26 +2,26 @@
 import { LessonType, TrainerInfo } from './types';
 
 export const TRAINER_INFO: TrainerInfo = {
-  name: "Carlos 'La Pared' Méndez",
-  bio: "Ex jugador del circuito profesional con más de 15 años de experiencia. Especialista en táctica avanzada y transiciones defensivas.",
-  specialties: ["Voleas Técnicas", "Estrategia de Juego", "Perfeccionamiento de Bandeja", "Juego de Pies"],
-  experience: "15+ Años",
-  achievements: ["Top 50 Ranking WPT (2018)", "Entrenador de Élite Certificado", "Ganador de 5 Opens Regionales"]
+  name: "Mariano Witte",
+  bio: "Profesor de alto rendimiento en PadelManía. Especialista en técnica de competición, corrección de golpes y táctica de juego avanzada.",
+  specialties: ["Técnica de Smash", "Táctica de Competición", "Defensa de Paredes", "Voleas de Definición"],
+  experience: "12+ Años",
+  achievements: ["Entrenador Certificado APA", "Ex Jugador Profesional", "Director Deportivo en PadelManía"]
 };
 
 export const LESSON_TYPES: LessonType[] = [
   {
     id: 'individual',
-    title: 'Entrenamiento Individual',
-    description: 'Sesión personalizada enfocada exclusivamente en tu técnica y puntos débiles.',
+    title: 'Clase Individual',
+    description: 'Entrenamiento 1 a 1 enfocado exclusivamente en corregir tu técnica y potenciar tus virtudes.',
     duration: '60 min',
     price: 65,
     icon: '👤'
   },
   {
     id: 'duo',
-    title: 'Sesión en Pareja',
-    description: 'Ideal para compañeros habituales. Mejora la sincronización y jugadas tácticas.',
+    title: 'Clase en Pareja',
+    description: 'Mejorá la química con tu compañero. Trabajo de transiciones, bloqueos y jugadas preparadas.',
     duration: '90 min',
     price: 45,
     icon: '👥'
@@ -29,15 +29,15 @@ export const LESSON_TYPES: LessonType[] = [
   {
     id: 'group',
     title: 'Clínica Grupal',
-    description: 'Entrenamiento de alta intensidad con 4 jugadores. Simulación de partido real.',
+    description: 'Entrenamiento dinámico para 4 jugadores. Situaciones reales de partido y corrección grupal.',
     duration: '90 min',
     price: 30,
     icon: '🎾'
   },
   {
     id: 'kids',
-    title: 'Academia Junior',
-    description: 'Sesiones divertidas para niños de 6 a 14 años para aprender lo fundamental.',
+    title: 'Escuelita de Menores',
+    description: 'Clases formativas para chicos. Aprendizaje mediante el juego y desarrollo de coordinación.',
     duration: '60 min',
     price: 25,
     icon: '👦'

@@ -23,25 +23,25 @@ const BookingSystem: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-              Reserva tu Próxima Sesión
+              Reservá tu Próximo Turno
             </h2>
             <p className="text-lg text-slate-400 mb-8">
-              Selecciona tu tipo de entrenamiento, fecha y hora. Confirmaremos tu sesión en menos de 2 horas.
+              Elegí el tipo de clase, fecha y hora. Te confirmamos la reserva por WhatsApp en minutos. Entrenamos en las canchas de <strong>PadelManía</strong>.
             </p>
             
             <div className="space-y-6">
               <div className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5">
                 <div className="w-12 h-12 bg-lime-500/10 rounded-full flex items-center justify-center text-lime-500 text-xl">✓</div>
                 <div>
-                  <h4 className="font-bold text-white">Disponibilidad Garantizada</h4>
-                  <p className="text-sm text-slate-500">Horarios actualizados diariamente según disponibilidad de pista.</p>
+                  <h4 className="font-bold text-white">Canchas Profesionales</h4>
+                  <p className="text-sm text-slate-500">Jugamos en las mejores instalaciones de PadelManía con iluminación LED.</p>
                 </div>
               </div>
               <div className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5">
                 <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl">★</div>
                 <div>
-                  <h4 className="font-bold text-white">Equipo Incluido</h4>
-                  <p className="text-sm text-slate-500">Palas y pelotas premium de alta gama disponibles.</p>
+                  <h4 className="font-bold text-white">Análisis de Video</h4>
+                  <p className="text-sm text-slate-500">Grabamos partes de la clase para corregir postura y técnica en el momento.</p>
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@ const BookingSystem: React.FC = () => {
             <div className="absolute top-0 right-0 w-24 h-24 bg-lime-500/5 -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl"></div>
             <div className="space-y-6 relative z-10">
               <div>
-                <label className="block text-sm font-semibold text-slate-400 mb-2">Tipo de Entrenamiento</label>
+                <label className="block text-sm font-semibold text-slate-400 mb-2">Tipo de Clase</label>
                 <select 
                   value={selectedLesson}
                   onChange={(e) => setSelectedLesson(e.target.value)}
@@ -65,7 +65,7 @@ const BookingSystem: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-400 mb-2">Fecha Preferida</label>
+                <label className="block text-sm font-semibold text-slate-400 mb-2">Fecha</label>
                 <input 
                   type="date" 
                   value={selectedDate}
@@ -78,13 +78,13 @@ const BookingSystem: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-semibold text-slate-400 mb-2">Horarios Disponibles</label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-4 gap-2">
                   {AVAILABLE_TIMES.map(time => (
                     <button
                       key={time}
                       type="button"
                       onClick={() => setSelectedTime(time)}
-                      className={`py-2 px-3 rounded-lg text-sm font-bold border transition-all ${
+                      className={`py-2 px-1 rounded-lg text-xs font-bold border transition-all ${
                         selectedTime === time 
                           ? 'bg-lime-500 border-lime-500 text-black shadow-[0_0_15px_rgba(163,230,53,0.3)]' 
                           : 'bg-slate-800 border-white/10 text-slate-400 hover:border-lime-500/50'
@@ -98,7 +98,7 @@ const BookingSystem: React.FC = () => {
 
               {bookingStatus === 'success' ? (
                 <div className="bg-lime-500/10 text-lime-400 p-4 rounded-xl text-center font-bold border border-lime-500/20 animate-pulse">
-                  ¡Sesión Solicitada! Te contactaremos pronto.
+                  ¡Turno Solicitado! Revisá tu WhatsApp.
                 </div>
               ) : (
                 <button

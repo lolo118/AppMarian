@@ -2,15 +2,15 @@
 import React from 'react';
 
 const WhatsAppBubble: React.FC = () => {
-  const phoneNumber = "3855864210"; // Reemplazar con el número real del entrenador
-  const message = encodeURIComponent("¡Hola Carlos! Vi tu web y me gustaría recibir más información sobre las clases de pádel. 🎾");
+  const phoneNumber = "549385000000"; // Número ejemplo para Santiago del Estero, Argentina
+  const message = encodeURIComponent("¡Hola Mariano! Vi tu web y me gustaría reservar una clase de pádel en PadelManía. 🎾");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-[60] group flex items-center gap-3">
       {/* Tooltip de ayuda */}
       <div className="bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-slate-200">
-        ¿Alguna duda? ¡Escríbeme!
+        ¿Alguna duda? ¡Hablemos!
       </div>
       
       {/* Botón de WhatsApp */}
