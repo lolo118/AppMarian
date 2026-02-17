@@ -10,7 +10,7 @@ const Features: React.FC = () => {
           <div className="lg:w-1/2">
             <div className="relative group">
               <img 
-                src="images/about.jpg" 
+                src="/images/about.jpg"
                 alt="Sobre Mariano Witte" 
                 className="rounded-3xl shadow-2xl z-10 relative transition-all duration-500 border border-white/5"
                 onError={(e) => {

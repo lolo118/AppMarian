@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
   const images = [
-    "images/hero.jpg",
-    "images/gallery-1.jpg",
-    "images/gallery-2.jpg",
-    "images/gallery-3.jpg",
-    "images/gallery-4.jpg",
-    "images/gallery-5.jpg",
-    "images/about.jpg"
+    "/images/hero.jpg",
+    "/images/gallery-1.jpg",
+    "/images/gallery-2.jpg",
+    "/images/gallery-3.jpg",
+    "/images/gallery-4.jpg",
+    "/images/gallery-5.jpg",
+    "/images/about.jpg"
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
