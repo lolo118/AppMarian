@@ -2,7 +2,14 @@
 import { GoogleGenAI } from "@google/genai";
 import { TRAINER_INFO, LESSON_TYPES } from "../constants";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Inicialización segura siguiendo las directrices del SDK
+const getAIClient = () => {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    console.warn("API_KEY no configurada. El chat de IA no funcionará correctamente.");
+  }
+  return new GoogleGenAI({ apiKey: apiKey || '' });
+};
 
 const SYSTEM_INSTRUCTION = `
 Eres el Asistente de IA para el entrenador de Pádel Carlos Méndez.
@@ -24,6 +31,7 @@ Mantén las respuestas concisas pero útiles. Responde siempre en español.
 
 export const getGeminiResponse = async (userMessage: string, history: { role: 'user' | 'model', text: string }[]) => {
   try {
+    const ai = getAIClient();
     const chat = ai.chats.create({
       model: 'gemini-3-flash-preview',
       config: {
@@ -35,6 +43,6 @@ export const getGeminiResponse = async (userMessage: string, history: { role: 'u
     return response.text;
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Estoy teniendo un pequeño problema con la conexión a la pista. ¡Por favor, inténtalo de nuevo en un momento!";
+    return "Estoy teniendo un pequeño problema con la conexión a la pista. ¡Por favor, asegúrate de que la clave de API esté configurada en Netlify!";
   }
 };
