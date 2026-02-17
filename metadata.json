@@ -1,8 +1,5 @@
 {
   "name": "PadelPro Elite Hub",
-  "description": "Plataforma premium para entusiastas del pádel. Aprende con entrenadores expertos, explora programas y reserva sesiones. Incluye asistente de IA personalizado.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
+  "description": "Plataforma premium para entusiastas del pádel. Aprende con entrenadores expertos, explora programas y reserva sesiones.",
+  "requestFramePermissions": []
 }
