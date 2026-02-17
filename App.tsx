@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
+import Gallery from './components/Gallery';
 import LessonCard from './components/LessonCard';
 import BookingSystem from './components/BookingSystem';
 import WhatsAppBubble from './components/WhatsAppBubble';
@@ -11,7 +12,7 @@ import { LESSON_TYPES } from './constants';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-lime-500 selection:text-black">
       <Header />
       
       <main>
@@ -34,6 +35,8 @@ const App: React.FC = () => {
             ))}
           </div>
         </section>
+
+        <Gallery />
 
         <section id="pricing" className="py-24 bg-black text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-lime-500/5 -skew-x-12 translate-x-1/2"></div>
