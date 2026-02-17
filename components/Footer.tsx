@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <footer className="bg-black text-slate-400 py-16 border-t border-white/5 relative overflow-hidden">
       <div className="absolute right-0 bottom-0 w-1/4 h-full opacity-10 pointer-events-none hidden lg:block">
         <img 
-          src="images/branding.jpg" 
+          src="/images/branding.jpg"
           className="w-full h-full object-cover object-left grayscale" 
           alt="Mariano Witte Branding"
           onError={(e) => {
