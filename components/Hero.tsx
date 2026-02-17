@@ -3,26 +3,27 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-slate-900 py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-black py-24 sm:py-32">
       <img
-        src="https://images.unsplash.com/photo-1610411322123-0189a6977465?q=80&w=2000&auto=format&fit=crop"
+        src="https://images.unsplash.com/photo-1626244101211-13390f7793b3?q=80&w=2000&auto=format&fit=crop"
         alt="Padel Court Background"
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-40"
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-30 grayscale"
       />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <div className="max-w-2xl">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">
-            Master the Court with <span className="text-lime-400">Pro Guidance</span>
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6 leading-tight">
+            Domina la Pista con <span className="text-lime-400 drop-shadow-[0_0_8px_rgba(163,230,53,0.5)]">Entrenamiento de Élite</span>
           </h1>
-          <p className="text-lg leading-8 text-slate-300 mb-10">
-            Elevate your Padel game with personalized coaching from Carlos Mendez. Whether you are a beginner or looking to break into the professional ranks, we have the training program for you.
+          <p className="text-lg leading-8 text-slate-400 mb-10">
+            Eleva tu nivel de pádel con la guía personalizada de Carlos Méndez. Desde principiantes hasta aspirantes a profesional, diseñamos tu camino al éxito.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#booking" className="inline-block rounded-xl bg-lime-500 px-8 py-4 text-center text-lg font-semibold text-white shadow-lg shadow-lime-500/30 hover:bg-lime-400 transition-all">
-              Schedule Your Session
+            <a href="#booking" className="inline-block rounded-xl bg-lime-500 px-8 py-4 text-center text-lg font-bold text-black shadow-lg shadow-lime-500/20 hover:bg-lime-400 transition-all">
+              Agendar Sesión
             </a>
-            <a href="#lessons" className="inline-block rounded-xl bg-white/10 backdrop-blur-md px-8 py-4 text-center text-lg font-semibold text-white hover:bg-white/20 transition-all">
-              View Programs
+            <a href="#lessons" className="inline-block rounded-xl border border-white/10 bg-white/5 backdrop-blur-md px-8 py-4 text-center text-lg font-bold text-white hover:bg-white/10 transition-all">
+              Ver Programas
             </a>
           </div>
         </div>

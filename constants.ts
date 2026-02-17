@@ -2,42 +2,42 @@
 import { LessonType, TrainerInfo } from './types';
 
 export const TRAINER_INFO: TrainerInfo = {
-  name: "Carlos 'The Wall' Mendez",
-  bio: "Former professional tour player with over 15 years of coaching experience. Specializing in advanced tactical positioning and defensive transitions.",
-  specialties: ["Technical Volleys", "Game Strategy", "Bandeja Perfection", "Footwork Conditioning"],
-  experience: "15+ Years",
-  achievements: ["Top 50 WPT Rank (2018)", "National Certified Elite Coach", "Winner of 5 Regional Opens"]
+  name: "Carlos 'La Pared' Méndez",
+  bio: "Ex jugador del circuito profesional con más de 15 años de experiencia. Especialista en táctica avanzada y transiciones defensivas.",
+  specialties: ["Voleas Técnicas", "Estrategia de Juego", "Perfeccionamiento de Bandeja", "Juego de Pies"],
+  experience: "15+ Años",
+  achievements: ["Top 50 Ranking WPT (2018)", "Entrenador de Élite Certificado", "Ganador de 5 Opens Regionales"]
 };
 
 export const LESSON_TYPES: LessonType[] = [
   {
     id: 'individual',
-    title: 'Individual Training',
-    description: 'One-on-one session focused exclusively on your technique and weaknesses.',
+    title: 'Entrenamiento Individual',
+    description: 'Sesión personalizada enfocada exclusivamente en tu técnica y puntos débiles.',
     duration: '60 min',
     price: 65,
     icon: '👤'
   },
   {
     id: 'duo',
-    title: 'Duo Session',
-    description: 'Perfect for regular partners. Improve your synchronization and tactical plays together.',
+    title: 'Sesión en Pareja',
+    description: 'Ideal para compañeros habituales. Mejora la sincronización y jugadas tácticas.',
     duration: '90 min',
     price: 45,
     icon: '👥'
   },
   {
     id: 'group',
-    title: 'Group Clinic',
-    description: 'High-intensity drills with 4 players. Great for competitive match play simulation.',
+    title: 'Clínica Grupal',
+    description: 'Entrenamiento de alta intensidad con 4 jugadores. Simulación de partido real.',
     duration: '90 min',
     price: 30,
     icon: '🎾'
   },
   {
     id: 'kids',
-    title: 'Junior Academy',
-    description: 'Fun-filled sessions for children aged 6-14 to learn the fundamentals.',
+    title: 'Academia Junior',
+    description: 'Sesiones divertidas para niños de 6 a 14 años para aprender lo fundamental.',
     duration: '60 min',
     price: 25,
     icon: '👦'
