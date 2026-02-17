@@ -2,7 +2,7 @@
 import React from 'react';
 
 const WhatsAppBubble: React.FC = () => {
-  const phoneNumber = "34600000000"; // Reemplazar con el número real del entrenador
+  const phoneNumber = "3855864210"; // Reemplazar con el número real del entrenador
   const message = encodeURIComponent("¡Hola Carlos! Vi tu web y me gustaría recibir más información sobre las clases de pádel. 🎾");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
