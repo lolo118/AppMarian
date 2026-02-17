@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
             Elevá tu juego con <span className="text-lime-400 drop-shadow-[0_0_8px_rgba(163,230,53,0.5)]">Mariano Witte</span>
           </h1>
           <p className="text-lg leading-8 text-slate-400 mb-10">
-            Clases personalizadas en <strong>PadelManía</strong>. Perfeccioná tu técnica y táctica con el mejor entrenamiento de la región. De principiantes a avanzados.
+            Clases personalizadas de alto rendimiento. Perfeccioná tu técnica y táctica en las mejores canchas de la región. Entrenamientos adaptados a todos los niveles.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#booking" className="inline-block rounded-xl bg-lime-500 px-8 py-4 text-center text-lg font-bold text-black shadow-lg shadow-lime-500/20 hover:bg-lime-400 transition-all">

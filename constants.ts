@@ -3,10 +3,10 @@ import { LessonType, TrainerInfo } from './types';
 
 export const TRAINER_INFO: TrainerInfo = {
   name: "Mariano Witte",
-  bio: "Profesor de alto rendimiento en PadelManía. Especialista en técnica de competición, corrección de golpes y táctica de juego avanzada.",
+  bio: "Profesor de alto rendimiento especializado en técnica de competición, corrección de golpes y táctica avanzada. Entrenamientos personalizados adaptados a tu nivel.",
   specialties: ["Técnica de Smash", "Táctica de Competición", "Defensa de Paredes", "Voleas de Definición"],
   experience: "12+ Años",
-  achievements: ["Entrenador Certificado APA", "Ex Jugador Profesional", "Director Deportivo en PadelManía"]
+  achievements: ["Entrenador Certificado APA", "Ex Jugador Profesional", "Especialista en Menores y Adultos"]
 };
 
 export const LESSON_TYPES: LessonType[] = [
@@ -46,4 +46,9 @@ export const LESSON_TYPES: LessonType[] = [
 
 export const AVAILABLE_TIMES = [
   "08:00", "09:30", "11:00", "14:00", "15:30", "17:00", "18:30", "20:00"
+];
+
+export const VENUES = [
+  "PadelManía SGO",
+  "Otro Club (A coordinar)"
 ];
