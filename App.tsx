@@ -3,10 +3,10 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
-import Gallery from './components/Gallery';
 import LessonCard from './components/LessonCard';
 import BookingSystem from './components/BookingSystem';
 import WhatsAppBubble from './components/WhatsAppBubble';
+import AIChat from './components/AIChat';
 import Footer from './components/Footer';
 import { LESSON_TYPES } from './constants';
 
@@ -36,15 +36,13 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <Gallery />
-
         <section id="pricing" className="py-24 bg-black text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-lime-500/5 -skew-x-12 translate-x-1/2"></div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-3xl font-bold mb-6">Packs de Clases</h2>
-                <p className="text-slate-400 text-lg mb-8">Congelá el precio y asegurá tu progreso reservando packs mensuales. La constancia es la clave para subir de categoría.</p>
+                <h2 className="text-3xl font-bold mb-6">Mis Packs de Clases</h2>
+                <p className="text-slate-400 text-lg mb-8">Congelá el precio y asegurá tu progreso reservando packs mensuales. La constancia es lo que te hará subir de categoría.</p>
                 
                 <div className="space-y-4">
                   {[
@@ -72,7 +70,7 @@ const App: React.FC = () => {
                 
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold mb-2">Entrenamiento Intensivo</h3>
-                  <p className="text-slate-400 mb-8">Para jugadores que buscan competir en los torneos del club.</p>
+                  <p className="text-slate-400 mb-8">Ideal si buscás competir fuerte en los torneos locales.</p>
                   <div className="flex items-baseline gap-1 mb-8">
                     <span className="text-5xl font-extrabold text-lime-400">$18000</span>
                     <span className="text-slate-500">/mes</span>
@@ -84,15 +82,15 @@ const App: React.FC = () => {
                     </li>
                     <li className="flex gap-3 items-center text-slate-300">
                       <span className="text-lime-500 font-bold">✓</span>
-                      <span>Video Análisis Mensual</span>
+                      <span>Mi Video Análisis Mensual</span>
                     </li>
                     <li className="flex gap-3 items-center text-slate-300">
                       <span className="text-lime-500 font-bold">✓</span>
-                      <span>Prioridad en Reservas de Cancha</span>
+                      <span>Prioridad en Mis Reservas</span>
                     </li>
                   </ul>
                   <a href="#booking" className="block w-full text-center bg-lime-500 text-black py-4 rounded-xl font-extrabold hover:bg-lime-400 transition-all shadow-lg shadow-lime-500/20">
-                    Consultar Disponibilidad
+                    Consultame Disponibilidad
                   </a>
                 </div>
               </div>
@@ -106,6 +104,7 @@ const App: React.FC = () => {
       <Footer />
       
       <WhatsAppBubble />
+      <AIChat />
     </div>
   );
 };

@@ -24,10 +24,10 @@ const BookingSystem: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-              Reservá tu Próximo Turno
+              Reservar un turno con Mariano
             </h2>
             <p className="text-lg text-slate-400 mb-8">
-              Elegí el tipo de clase, el lugar y el horario. Coordinamos los detalles finales por WhatsApp para confirmar la disponibilidad de la cancha.
+              Seleccione el tipo de entrenamiento, lugar y horario de su preferencia. Mariano se pondrá en contacto por WhatsApp para confirmar la disponibilidad de cancha.
             </p>
             
             <div className="space-y-6">
@@ -35,14 +35,14 @@ const BookingSystem: React.FC = () => {
                 <div className="w-12 h-12 bg-lime-500/10 rounded-full flex items-center justify-center text-lime-500 text-xl">📍</div>
                 <div>
                   <h4 className="font-bold text-white">Flexibilidad de Lugar</h4>
-                  <p className="text-sm text-slate-500">Entrenamos en PadelManía o en el club que te quede más cómodo (sujeto a disponibilidad).</p>
+                  <p className="text-sm text-slate-500">Entrenamientos en PadelManía o en el club que usted elija coordinando previamente.</p>
                 </div>
               </div>
               <div className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5">
                 <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl">★</div>
                 <div>
                   <h4 className="font-bold text-white">Análisis de Video</h4>
-                  <p className="text-sm text-slate-500">Filmamos partes de la clase para corregir postura y técnica en tiempo real.</p>
+                  <p className="text-sm text-slate-500">Mariano utiliza tecnología de video para analizar y corregir posturas durante la sesión.</p>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@ const BookingSystem: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-400 mb-2">Cancha / Club</label>
+                  <label className="block text-sm font-semibold text-slate-400 mb-2">Club Sugerido</label>
                   <select 
                     value={selectedVenue}
                     onChange={(e) => setSelectedVenue(e.target.value)}
@@ -81,7 +81,7 @@ const BookingSystem: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-400 mb-2">Fecha</label>
+                <label className="block text-sm font-semibold text-slate-400 mb-2">Fecha Tentativa</label>
                 <input 
                   type="date" 
                   value={selectedDate}
@@ -93,7 +93,7 @@ const BookingSystem: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-400 mb-2">Horarios Tentativos</label>
+                <label className="block text-sm font-semibold text-slate-400 mb-2">Horarios Disponibles</label>
                 <div className="grid grid-cols-4 gap-2">
                   {AVAILABLE_TIMES.map(time => (
                     <button
@@ -114,7 +114,7 @@ const BookingSystem: React.FC = () => {
 
               {bookingStatus === 'success' ? (
                 <div className="bg-lime-500/10 text-lime-400 p-4 rounded-xl text-center font-bold border border-lime-500/20 animate-pulse">
-                  ¡Pedido enviado! Coordinemos por WhatsApp.
+                  Solicitud enviada. Recibirá un WhatsApp en breve.
                 </div>
               ) : (
                 <button
@@ -122,7 +122,7 @@ const BookingSystem: React.FC = () => {
                   disabled={bookingStatus === 'loading'}
                   className="w-full bg-lime-500 text-black py-4 rounded-xl font-extrabold text-lg hover:bg-lime-400 disabled:opacity-50 transition-all shadow-lg shadow-lime-500/20"
                 >
-                  {bookingStatus === 'loading' ? 'Procesando...' : 'Pedir Turno'}
+                  {bookingStatus === 'loading' ? 'Procesando...' : 'Solicitar Turno'}
                 </button>
               )}
             </div>

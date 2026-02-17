@@ -9,11 +9,13 @@ const Features: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <div className="relative group">
-              {/* Foto real (Festejo de Mariano) */}
               <img 
-                src="/images/about.jpg" 
-                alt="Mariano Witte Entrenando" 
+                src="images/about.jpg" 
+                alt="Sobre Mariano Witte" 
                 className="rounded-3xl shadow-2xl z-10 relative transition-all duration-500 border border-white/5"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1610411322123-0189a6977465?q=80&w=1000";
+                }}
               />
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-lime-500/20 rounded-3xl -z-10 hidden sm:block border border-lime-500/30 group-hover:bg-lime-500/30 transition-colors"></div>
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
@@ -21,8 +23,8 @@ const Features: React.FC = () => {
           </div>
           
           <div className="lg:w-1/2">
-            <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Tu Entrenador</h2>
-            <h3 className="text-5xl font-extrabold text-white mb-6 leading-tight">{TRAINER_INFO.name}</h3>
+            <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Su Trayectoria</h2>
+            <h3 className="text-5xl font-extrabold text-white mb-6 leading-tight">Sobre Mariano</h3>
             <p className="text-xl text-slate-300 mb-8 leading-relaxed font-light">
               {TRAINER_INFO.bio}
             </p>

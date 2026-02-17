@@ -4,12 +4,14 @@ import React from 'react';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-slate-400 py-16 border-t border-white/5 relative overflow-hidden">
-      {/* Foto real de Mariano de espalda con su nombre */}
       <div className="absolute right-0 bottom-0 w-1/4 h-full opacity-10 pointer-events-none hidden lg:block">
         <img 
-          src="/images/branding.jpg" 
+          src="images/branding.jpg" 
           className="w-full h-full object-cover object-left grayscale" 
           alt="Mariano Witte Branding"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
         />
       </div>
 
@@ -21,7 +23,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold text-white">Witte<span className="text-lime-400">PadelPro</span></span>
             </div>
             <p className="max-w-md text-slate-500">
-              Formación profesional de pádel con enfoque en la técnica y la mentalidad competitiva. Elevá tu juego en Santiago del Estero.
+              Formación profesional de pádel enfocada en la técnica avanzada y la mentalidad ganadora. Entrenamiento de élite en Santiago del Estero.
             </p>
           </div>
           <div>
@@ -34,15 +36,15 @@ const Footer: React.FC = () => {
           </div>
           <div>
             <h4 className="text-white font-bold mb-6">Contacto</h4>
-            <p className="text-slate-500 mb-2 font-bold text-white uppercase tracking-tighter">Mariano Witte</p>
-            <p className="text-slate-500 mb-4 italic">Santiago del Estero, Argentina</p>
+            <p className="text-slate-200 mb-2 font-bold uppercase tracking-tighter">Mariano Witte</p>
+            <p className="text-slate-500 mb-4 italic text-sm">Santiago del Estero, Argentina</p>
             <div className="flex gap-4">
-              <div className="px-4 py-2 border border-white/10 rounded-full text-xs font-bold text-lime-400">#WittePadelPro</div>
+              <div className="px-4 py-2 border border-white/10 rounded-full text-[10px] font-bold text-lime-400">#WittePadelPro</div>
             </div>
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest font-bold">
-          <p>© 2024 Witte Padel Pro • Todos los derechos reservados</p>
+          <p>© 2024 Witte Padel Pro • Sitio Oficial de Mariano Witte</p>
           <p>Potenciando el Pádel Argentino</p>
         </div>
       </div>

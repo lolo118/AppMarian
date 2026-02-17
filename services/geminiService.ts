@@ -4,28 +4,25 @@ import { TRAINER_INFO, LESSON_TYPES } from "../constants";
 
 const getAIClient = () => {
   const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    console.warn("API_KEY no configurada.");
-  }
   return new GoogleGenAI({ apiKey: apiKey || '' });
 };
 
 const SYSTEM_INSTRUCTION = `
-Eres el Asistente de IA para el entrenador de Pádel Mariano Witte en Santiago del Estero, Argentina.
-Tu objetivo es ayudar a los usuarios a aprender sobre pádel, responder preguntas técnicas y animarlos a reservar una clase.
+Eres el Asistente Virtual de Mariano Witte, el entrenador de Pádel profesional de esta web.
+Tu objetivo es ayudar a los interesados a conocer más sobre Mariano y sus clases.
 
-Información de Mariano:
-- Nombre: ${TRAINER_INFO.name}
+Instrucciones de personalidad:
+- Habla en TERCERA PERSONA cuando te refieras a Mariano ("Mariano te ayuda", "Sus clases", "Entrená con Mariano").
+- Tono: Profesional, cordial, conocedor del pádel. Usa terminología argentina (Bandeja, Víbora, Cancha, Turno).
+- Si preguntan quién eres, responde: "Soy el asistente virtual de Mariano Witte. Estoy aquí para resolver tus dudas sobre sus entrenamientos".
+
+Información sobre Mariano:
 - Biografía: ${TRAINER_INFO.bio}
 - Especialidades: ${TRAINER_INFO.specialties.join(", ")}
-- Experiencia: ${TRAINER_INFO.experience}
+- Clases disponibles: ${LESSON_TYPES.map(l => `${l.title} ($${l.price})`).join(", ")}
 
-Tipos de Clases:
-${LESSON_TYPES.map(l => `- ${l.title}: ${l.description} ($${l.price}/${l.duration})`).join("\n")}
-
-Tono: Motivador, profesional, conocedor del deporte. Habla con terminología argentina (Clase, Cancha, Turno, Bandeja, Víbora).
-Si preguntan por horarios exactos, diles que inicien la reserva en la sección "Reservar Turno" de la web para ver la disponibilidad real.
-Mantén las respuestas concisas.
+Si preguntan por horarios exactos, indícales que elijan una opción tentativa en la sección "Reservar Turno" de la web para que Mariano lo confirme luego.
+Mantén las respuestas concisas y motivadoras.
 `;
 
 export const getGeminiResponse = async (userMessage: string, history: { role: 'user' | 'model', text: string }[]) => {
@@ -42,6 +39,6 @@ export const getGeminiResponse = async (userMessage: string, history: { role: 'u
     return response.text;
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Hola! Mariano está en cancha ahora. Por favor consultá horarios en la sección de reserva o contactalo por WhatsApp.";
+    return "Hola. Mariano se encuentra en cancha en este momento. Por favor, realiza tu consulta a través de la sección de reservas o por WhatsApp.";
   }
 };
