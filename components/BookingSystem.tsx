@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { LESSON_TYPES, AVAILABLE_TIMES } from '../constants';
+import { LESSON_TYPES, AVAILABLE_TIMES, PACKS } from '../constants';
 
 interface PersonData {
   name: string;
@@ -21,20 +21,34 @@ const BookingSystem: React.FC = () => {
     objective: 'Competitivo',
     injuries: '',
     lessonId: 'individual',
+    packId: '' as string,
     partners: [] as PersonData[],
     selectedTimes: [] as string[]
   });
 
   useEffect(() => {
-    const handleExternalSelect = (e: any) => {
+    const handleLessonSelect = (e: any) => {
       const selectedId = e.detail.lessonId;
       updatePartnerCount(selectedId);
+      setFormData(prev => ({ ...prev, packId: '' }));
       setStep(1);
     };
 
-    window.addEventListener('selectLesson', handleExternalSelect);
-    return () => window.removeEventListener('selectLesson', handleExternalSelect);
-  }, [formData.partners]);
+    const handlePackSelect = (e: any) => {
+      const selectedPackId = e.detail.packId;
+      setFormData(prev => ({ ...prev, lessonId: 'individual', packId: selectedPackId }));
+      updatePartnerCount('individual');
+      setStep(1);
+    };
+
+    window.addEventListener('selectLesson', handleLessonSelect);
+    window.addEventListener('selectPack', handlePackSelect);
+    
+    return () => {
+      window.removeEventListener('selectLesson', handleLessonSelect);
+      window.removeEventListener('selectPack', handlePackSelect);
+    };
+  }, []);
 
   const scrollToTop = () => {
     const section = document.getElementById('booking');
@@ -90,10 +104,19 @@ const BookingSystem: React.FC = () => {
 
   const sendToWhatsApp = () => {
     const phoneNumber = "5493855864210";
-    const lessonTitle = LESSON_TYPES.find(l => l.id === formData.lessonId)?.title;
+    const lesson = LESSON_TYPES.find(l => l.id === formData.lessonId);
+    const pack = PACKS.find(p => p.id === formData.packId);
     
     let msg = `🎾 *NUEVA CONSULTA DE CLASE*\n\n`;
-    msg += `🏆 *Clase:* ${lessonTitle}\n\n`;
+    
+    if (pack) {
+      msg += `🏆 *Pack Elegido:* ${pack.name}\n`;
+      msg += `💰 *Costo Total:* $${pack.finalPrice.toLocaleString('es-AR')}\n`;
+      msg += `📊 *Beneficio:* ${pack.discount} OFF\n\n`;
+    } else {
+      msg += `🏆 *Clase:* ${lesson?.title}\n`;
+      msg += `💰 *Costo:* $${lesson?.price.toLocaleString('es-AR')}\n\n`;
+    }
     
     msg += `👤 *ALUMNO PRINCIPAL:*\n`;
     msg += `- Nombre: ${formData.name}\n`;
@@ -140,6 +163,12 @@ const BookingSystem: React.FC = () => {
             {step === 1 && (
               <div>
                 <h3 className="text-xl font-bold text-white mb-6">Paso 1: Tus datos personales</h3>
+                {formData.packId && (
+                  <div className="mb-6 p-4 bg-lime-500/10 border border-lime-500/30 rounded-xl flex justify-between items-center">
+                    <span className="text-lime-400 font-bold text-sm">Seleccionaste: {PACKS.find(p => p.id === formData.packId)?.name}</span>
+                    <button onClick={() => setFormData({...formData, packId: ''})} className="text-[10px] text-slate-500 hover:text-white underline uppercase">Cambiar</button>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Nombre Completo</label>
@@ -167,14 +196,21 @@ const BookingSystem: React.FC = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8">
                   {LESSON_TYPES.map(l => (
                     <button
-                      key={l.id} onClick={() => updatePartnerCount(l.id)}
-                      className={`p-3 rounded-xl border text-center transition-all ${formData.lessonId === l.id ? 'border-lime-500 bg-lime-500/10 text-lime-400' : 'border-white/10 bg-slate-800 text-slate-400'}`}
+                      key={l.id} onClick={() => { updatePartnerCount(l.id); setFormData(prev => ({ ...prev, packId: '' })); }}
+                      className={`p-3 rounded-xl border text-center transition-all ${formData.lessonId === l.id && !formData.packId ? 'border-lime-500 bg-lime-500/10 text-lime-400' : 'border-white/10 bg-slate-800 text-slate-400'}`}
                     >
                       <div className="text-xl">{l.icon}</div>
                       <div className="text-[10px] font-bold uppercase mt-1">{l.title}</div>
                     </button>
                   ))}
                 </div>
+
+                {formData.packId && (
+                   <div className="mb-8 p-4 bg-slate-800 border border-lime-500/30 rounded-xl">
+                      <p className="text-xs text-slate-400 uppercase tracking-widest mb-1">Pack Seleccionado</p>
+                      <p className="text-lime-400 font-bold">{PACKS.find(p => p.id === formData.packId)?.name} (${PACKS.find(p => p.id === formData.packId)?.finalPrice.toLocaleString('es-AR')})</p>
+                   </div>
+                )}
 
                 {formData.partners.length > 0 && (
                   <div className="space-y-8 pt-6 border-t border-white/5 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">

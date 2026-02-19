@@ -7,9 +7,19 @@ import LessonCard from './components/LessonCard';
 import BookingSystem from './components/BookingSystem';
 import WhatsAppBubble from './components/WhatsAppBubble';
 import Footer from './components/Footer';
-import { LESSON_TYPES } from './constants';
+import { LESSON_TYPES, PACKS } from './constants';
 
 const App: React.FC = () => {
+  const handleSelectPack = (packId: string) => {
+    const event = new CustomEvent('selectPack', { detail: { packId } });
+    window.dispatchEvent(event);
+    
+    const bookingSection = document.getElementById('booking');
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-lime-500 selection:text-black">
       <Header />
@@ -45,12 +55,12 @@ const App: React.FC = () => {
                 <p className="text-xs text-slate-500 mb-8 italic">* Los packs tienen un 100% de pago por adelantado para mantener el beneficio del descuento.</p>
                 
                 <div className="space-y-4">
-                  {[
-                    { name: 'Pack Inicio', sessions: 4, discount: '5%' },
-                    { name: 'Progreso Pro', sessions: 8, discount: '10%' },
-                    { name: 'Elite Performance', sessions: 12, discount: '15%' }
-                  ].map((pkg, i) => (
-                    <div key={i} className="bg-slate-900 border border-white/5 p-6 rounded-2xl flex justify-between items-center hover:border-lime-500/30 transition-colors group">
+                  {PACKS.filter(p => !p.isSpecial).map((pkg) => (
+                    <button 
+                      key={pkg.id} 
+                      onClick={() => handleSelectPack(pkg.id)}
+                      className="w-full bg-slate-900 border border-white/5 p-6 rounded-2xl flex justify-between items-center hover:border-lime-500/50 hover:bg-slate-800 transition-all group text-left"
+                    >
                       <div>
                         <p className="font-bold text-xl group-hover:text-lime-400 transition-colors">{pkg.name}</p>
                         <p className="text-slate-500 text-sm">{pkg.sessions} Clases con cancha incluida</p>
@@ -59,7 +69,7 @@ const App: React.FC = () => {
                         <p className="text-lime-400 font-extrabold">{pkg.discount} OFF</p>
                         <p className="text-[10px] text-slate-600 uppercase tracking-tighter italic">Ahorro Directo</p>
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -93,9 +103,12 @@ const App: React.FC = () => {
                     </li>
                   </ul>
                   <p className="text-lime-400 font-bold text-center mb-4 text-sm animate-pulse">¡Cupos limitados!</p>
-                  <a href="#booking" className="block w-full text-center bg-lime-500 text-black py-4 rounded-xl font-extrabold hover:bg-lime-400 transition-all shadow-lg shadow-lime-500/20">
+                  <button 
+                    onClick={() => handleSelectPack('intensivo')}
+                    className="block w-full text-center bg-lime-500 text-black py-4 rounded-xl font-extrabold hover:bg-lime-400 transition-all shadow-lg shadow-lime-500/20"
+                  >
                     Consultame Ahora
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

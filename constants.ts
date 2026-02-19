@@ -44,6 +44,13 @@ export const LESSON_TYPES: LessonType[] = [
   }
 ];
 
+export const PACKS = [
+  { id: 'pack-inicio', name: 'Pack Inicio', sessions: 4, discount: '5%', basePrice: 20000, finalPrice: 76000 },
+  { id: 'progreso-pro', name: 'Progreso Pro', sessions: 8, discount: '10%', basePrice: 20000, finalPrice: 144000 },
+  { id: 'elite-performance', name: 'Elite Performance', sessions: 12, discount: '15%', basePrice: 20000, finalPrice: 204000 },
+  { id: 'intensivo', name: 'Entrenamiento Intensivo', sessions: 8, discount: '13%', basePrice: 20000, finalPrice: 139000, isSpecial: true }
+];
+
 export const AVAILABLE_TIMES = [
   "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00"
 ];
