@@ -2,7 +2,7 @@
 import React from 'react';
 
 const WhatsAppBubble: React.FC = () => {
-  const phoneNumber = "549385000000"; 
+  const phoneNumber = "5493855864210"; 
   const message = encodeURIComponent("¡Hola Mariano! Vi tu web y me gustaría consultarte por la disponibilidad para una clase de pádel. 🎾");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 

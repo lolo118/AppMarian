@@ -56,7 +56,7 @@ const BookingSystem: React.FC = () => {
   };
 
   const sendToWhatsApp = () => {
-    const phoneNumber = "549385000000";
+    const phoneNumber = "5493855864210";
     const lessonTitle = LESSON_TYPES.find(l => l.id === formData.lessonId)?.title;
     
     let partnersInfo = "";

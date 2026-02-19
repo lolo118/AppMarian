@@ -73,10 +73,10 @@ const App: React.FC = () => {
                   <p className="text-slate-400 mb-8 text-sm italic">Ideal para competidores que buscan subir de categoría rápido.</p>
                   <div className="flex flex-col mb-8">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-lime-400">$144.000</span>
+                      <span className="text-4xl font-black text-lime-400">$139.000</span>
                       <span className="text-slate-500 text-xs">/mes*</span>
                     </div>
-                    <span className="text-[10px] text-slate-600 mt-1">(Basado en pack 8 clases individuales con 10% OFF)</span>
+                    <span className="text-[10px] text-slate-600 mt-1">(Basado en pack 8 clases individuales con 13% OFF)</span>
                   </div>
                   <ul className="space-y-4 mb-10">
                     <li className="flex gap-3 items-center text-slate-300 text-sm">
