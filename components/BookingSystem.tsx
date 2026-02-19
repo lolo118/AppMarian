@@ -16,12 +16,10 @@ const BookingSystem: React.FC = () => {
     selectedTimes: [] as string[]
   });
 
-  // Listener para selección desde las tarjetas externas
   useEffect(() => {
     const handleExternalSelect = (e: any) => {
       const selectedId = e.detail.lessonId;
       updatePartnerCount(selectedId);
-      // Opcionalmente podemos resetear el wizard al paso 1 si el usuario ya estaba navegando
       setStep(1);
     };
 
@@ -50,6 +48,7 @@ const BookingSystem: React.FC = () => {
   const updatePartnerCount = (type: string) => {
     let count = 0;
     if (type === 'duo') count = 1;
+    if (type === 'trio') count = 2;
     if (type === 'group') count = 3;
     
     const partners = Array(count).fill(0).map((_, i) => formData.partners[i] || { name: '', age: '' });
@@ -57,7 +56,7 @@ const BookingSystem: React.FC = () => {
   };
 
   const sendToWhatsApp = () => {
-    const phoneNumber = "549385000000"; // Número de Mariano
+    const phoneNumber = "549385000000";
     const lessonTitle = LESSON_TYPES.find(l => l.id === formData.lessonId)?.title;
     
     let partnersInfo = "";
@@ -73,7 +72,7 @@ const BookingSystem: React.FC = () => {
       `↔️ *Posición:* ${formData.side}\n` +
       `🎯 *Objetivo:* ${formData.objective}\n` +
       `⚠️ *Lesiones:* ${formData.injuries || 'Ninguna'}\n\n` +
-      `⏰ *Disponibilidad horaria:* ${formData.selectedTimes.join(", ")}\n\n` +
+      `⏰ *Horarios tentativos:* ${formData.selectedTimes.join(", ")}\n\n` +
       `_Enviado desde la web oficial de Mariano Witte_`
     );
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
@@ -87,12 +86,11 @@ const BookingSystem: React.FC = () => {
             Empezá a entrenar conmigo
           </h2>
           <p className="text-slate-400">
-            Completá este breve formulario para que pueda conocer tu perfil y coordinemos tu primera clase.
+            Completá este breve formulario para coordinar tu primera clase.
           </p>
         </div>
 
         <div className="bg-slate-900 border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-          {/* Progress Bar */}
           <div className="absolute top-0 left-0 w-full h-1 bg-slate-800">
             <div 
               className="h-full bg-lime-500 transition-all duration-500" 
@@ -100,7 +98,6 @@ const BookingSystem: React.FC = () => {
             ></div>
           </div>
 
-          {/* Steps */}
           <div className="mt-4">
             {step === 1 && (
               <div className="animate-in fade-in slide-in-from-right-4 duration-500">
@@ -133,19 +130,19 @@ const BookingSystem: React.FC = () => {
             {step === 2 && (
               <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                 <h3 className="text-xl font-bold text-white mb-6">¿Qué tipo de clase buscás?</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8">
                   {LESSON_TYPES.map(lesson => (
                     <button
                       key={lesson.id}
                       onClick={() => updatePartnerCount(lesson.id)}
-                      className={`p-4 rounded-xl border transition-all text-center ${
+                      className={`p-3 rounded-xl border transition-all text-center flex flex-col items-center justify-center ${
                         formData.lessonId === lesson.id 
                         ? 'border-lime-500 bg-lime-500/10 text-lime-400' 
                         : 'border-white/10 bg-slate-800 text-slate-400 hover:border-white/20'
                       }`}
                     >
-                      <div className="text-2xl mb-1">{lesson.icon}</div>
-                      <div className="font-bold text-sm">{lesson.title}</div>
+                      <div className="text-xl mb-1">{lesson.icon}</div>
+                      <div className="font-bold text-[10px] uppercase tracking-tighter leading-tight">{lesson.title}</div>
                     </button>
                   ))}
                 </div>
@@ -153,23 +150,25 @@ const BookingSystem: React.FC = () => {
                 {formData.partners.length > 0 && (
                   <div className="space-y-4 pt-4 border-t border-white/5">
                     <p className="text-sm font-bold text-slate-400">Datos de tus compañeros:</p>
-                    {formData.partners.map((partner, idx) => (
-                      <div key={idx} className="grid grid-cols-2 gap-3">
-                        <input 
-                          placeholder={`Nombre Acompañante ${idx + 1}`}
-                          value={partner.name}
-                          onChange={(e) => handlePartnerChange(idx, 'name', e.target.value)}
-                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:ring-1 focus:ring-lime-500 outline-none"
-                        />
-                        <input 
-                          type="number"
-                          placeholder="Edad"
-                          value={partner.age}
-                          onChange={(e) => handlePartnerChange(idx, 'age', e.target.value)}
-                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:ring-1 focus:ring-lime-500 outline-none"
-                        />
-                      </div>
-                    ))}
+                    <div className="max-h-48 overflow-y-auto pr-2 space-y-3">
+                      {formData.partners.map((partner, idx) => (
+                        <div key={idx} className="grid grid-cols-2 gap-3">
+                          <input 
+                            placeholder={`Nombre Acompañante ${idx + 1}`}
+                            value={partner.name}
+                            onChange={(e) => handlePartnerChange(idx, 'name', e.target.value)}
+                            className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:ring-1 focus:ring-lime-500 outline-none"
+                          />
+                          <input 
+                            type="number"
+                            placeholder="Edad"
+                            value={partner.age}
+                            onChange={(e) => handlePartnerChange(idx, 'age', e.target.value)}
+                            className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:ring-1 focus:ring-lime-500 outline-none"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -246,14 +245,14 @@ const BookingSystem: React.FC = () => {
 
             {step === 5 && (
               <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                <h3 className="text-xl font-bold text-white mb-4">¿En qué horarios podés entrenar?</h3>
-                <p className="text-xs text-slate-500 mb-6 italic">Seleccioná todos los que te queden bien entre las 07:00 y las 15:00.</p>
-                <div className="grid grid-cols-3 gap-2">
+                <h3 className="text-xl font-bold text-white mb-2">¿En qué horarios podés entrenar?</h3>
+                <p className="text-xs text-slate-500 mb-6 italic">Franja disponible: 07:00 a 15:00. La última clase inicia a las 14:00.</p>
+                <div className="grid grid-cols-4 gap-2">
                   {AVAILABLE_TIMES.map(time => (
                     <button
                       key={time}
                       onClick={() => toggleTime(time)}
-                      className={`py-2 rounded-lg border text-xs font-bold transition-all ${
+                      className={`py-2 rounded-lg border text-[10px] font-bold transition-all ${
                         formData.selectedTimes.includes(time) 
                         ? 'bg-lime-500 border-lime-500 text-black shadow-lg shadow-lime-500/20' 
                         : 'border-white/10 bg-slate-800 text-slate-400 hover:border-white/20'
@@ -267,7 +266,6 @@ const BookingSystem: React.FC = () => {
             )}
           </div>
 
-          {/* Navigation */}
           <div className="mt-10 flex justify-between gap-4">
             {step > 1 && (
               <button 

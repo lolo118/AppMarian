@@ -8,11 +8,9 @@ interface Props {
 
 const LessonCard: React.FC<Props> = ({ lesson }) => {
   const handleSelect = () => {
-    // Emitimos un evento personalizado para que el BookingSystem reaccione
     const event = new CustomEvent('selectLesson', { detail: { lessonId: lesson.id } });
     window.dispatchEvent(event);
     
-    // Desplazamos al usuario hacia la sección de reserva
     const bookingSection = document.getElementById('booking');
     if (bookingSection) {
       bookingSection.scrollIntoView({ behavior: 'smooth' });
@@ -28,14 +26,14 @@ const LessonCard: React.FC<Props> = ({ lesson }) => {
         {lesson.icon}
       </div>
       <h3 className="text-2xl font-bold text-white mb-2">{lesson.title}</h3>
-      <p className="text-slate-400 mb-6 leading-relaxed">
+      <p className="text-slate-400 mb-6 leading-relaxed text-sm">
         {lesson.description}
       </p>
       <div className="flex items-center justify-between mt-auto border-t border-white/5 pt-6">
-        <span className="text-slate-500 font-medium">{lesson.duration}</span>
+        <span className="text-slate-500 font-medium text-xs">{lesson.duration}</span>
         <div className="flex flex-col items-end">
-          <span className="text-2xl font-bold text-lime-400">${lesson.price}</span>
-          <span className="text-[10px] text-lime-500/50 uppercase font-bold tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Seleccionar</span>
+          <span className="text-xl font-black text-lime-400">${lesson.price.toLocaleString('es-AR')}</span>
+          <span className="text-[9px] text-lime-500/70 uppercase font-bold tracking-widest mt-0.5">Cancha Incluida</span>
         </div>
       </div>
     </div>

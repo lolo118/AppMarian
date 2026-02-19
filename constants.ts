@@ -12,32 +12,40 @@ export const TRAINER_INFO: TrainerInfo = {
 export const LESSON_TYPES: LessonType[] = [
   {
     id: 'individual',
-    title: 'Clase Individual',
-    description: 'Te entreno 1 a 1 enfocándome exclusivamente en corregir tu técnica y potenciar tus virtudes naturales.',
+    title: 'Clase 1 Persona',
+    description: 'Entrenamiento 1 a 1 enfocado exclusivamente en tu técnica. Incluye cancha.',
     duration: '60 min',
-    price: 65,
+    price: 20000,
     icon: '👤'
   },
   {
     id: 'duo',
-    title: 'Clase en Pareja',
-    description: 'Vení con tu compañero/a. Mejoramos la química, transiciones, bloqueos y jugadas preparadas de equipo.',
+    title: 'Clase 2 Personas',
+    description: 'Vení con tu compañero/a. Mejoramos la química y jugadas preparadas. Incluye cancha.',
     duration: '90 min',
-    price: 45,
+    price: 28000,
     icon: '👥'
   },
   {
-    id: 'group',
-    title: 'Clínica Grupal',
-    description: 'Entrenamiento dinámico para 4 jugadores max. Trabajamos situaciones reales de partido y corrección grupal.',
+    id: 'trio',
+    title: 'Clase 3 Personas',
+    description: 'Entrenamiento dinámico para tres jugadores. Ideal para rotaciones tácticas. Incluye cancha.',
     duration: '90 min',
-    price: 30,
+    price: 38000,
+    icon: '👪'
+  },
+  {
+    id: 'group',
+    title: 'Clínica 4 Personas',
+    description: 'Entrenamiento para 4 jugadores. Situaciones reales de partido y corrección grupal. Incluye cancha.',
+    duration: '90 min',
+    price: 48000,
     icon: '🎾'
   }
 ];
 
 export const AVAILABLE_TIMES = [
-  "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"
+  "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00"
 ];
 
 export const VENUES = [
