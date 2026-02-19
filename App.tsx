@@ -22,9 +22,9 @@ const App: React.FC = () => {
         <section id="lessons" className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Entrenamientos</h2>
-            <h3 className="text-4xl font-extrabold text-white">Clases a tu Medida</h3>
+            <h3 className="text-4xl font-extrabold text-white">Elegí el formato que mejor se adapte a vos</h3>
             <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
-              Elegí el formato que mejor se adapte a tu nivel y objetivos. El precio incluye el alquiler de cancha en cada turno.
+              Todos los precios incluyen el alquiler de la cancha.
             </p>
           </div>
           
@@ -40,9 +40,9 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-3xl font-bold mb-4">Mis Packs de Clases</h2>
-                <p className="text-slate-400 text-lg mb-4">Congelá el precio y asegurá tu progreso reservando packs mensuales conmigo.</p>
-                <p className="text-xs text-slate-500 mb-8">* Los packs deben pagarse al 100% por adelantado para mantener el beneficio del descuento.</p>
+                <h2 className="text-3xl font-bold mb-4">Asegurá tu progreso con un pack</h2>
+                <p className="text-slate-400 text-lg mb-4">Pagá por adelantado, congelá el precio y empezá a notar la diferencia.</p>
+                <p className="text-xs text-slate-500 mb-8 italic">* Los packs tienen un 100% de pago por adelantado para mantener el beneficio del descuento.</p>
                 
                 <div className="space-y-4">
                   {[
@@ -69,14 +69,14 @@ const App: React.FC = () => {
                 <div className="absolute -top-4 -right-4 bg-lime-500 text-black px-4 py-1 rounded-full text-sm font-extrabold shadow-lg z-20">Recomendado</div>
                 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-2">Entrenamiento Intensivo</h3>
-                  <p className="text-slate-400 mb-8 text-sm italic">Ideal para competidores que buscan subir de categoría rápido.</p>
+                  <h3 className="text-2xl font-bold mb-2">🏆 Entrenamiento Intensivo</h3>
+                  <p className="text-slate-400 mb-8 text-sm italic">Ideal para competidores que buscan subir de categoría rápido. Entrenamiento personalizado y seguimiento continuo.</p>
                   <div className="flex flex-col mb-8">
                     <div className="flex items-baseline gap-1">
                       <span className="text-4xl font-black text-lime-400">$139.000</span>
                       <span className="text-slate-500 text-xs">/mes*</span>
                     </div>
-                    <span className="text-[10px] text-slate-600 mt-1">(Basado en pack 8 clases individuales con 13% OFF)</span>
+                    <span className="text-[10px] text-slate-600 mt-1">(Basado en pack de 8 clases individuales con 13% OFF)</span>
                   </div>
                   <ul className="space-y-4 mb-10">
                     <li className="flex gap-3 items-center text-slate-300 text-sm">
@@ -92,8 +92,9 @@ const App: React.FC = () => {
                       <span>Prioridad en agenda y coordinación</span>
                     </li>
                   </ul>
+                  <p className="text-lime-400 font-bold text-center mb-4 text-sm animate-pulse">¡Cupos limitados!</p>
                   <a href="#booking" className="block w-full text-center bg-lime-500 text-black py-4 rounded-xl font-extrabold hover:bg-lime-400 transition-all shadow-lg shadow-lime-500/20">
-                    Consultame Cupos
+                    Consultame Ahora
                   </a>
                 </div>
               </div>

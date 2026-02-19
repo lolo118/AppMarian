@@ -126,9 +126,9 @@ const BookingSystem: React.FC = () => {
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
-            Empezá tu Entrenamiento
+            Empezá tu entrenamiento
           </h2>
-          <p className="text-slate-400">Completá los perfiles para coordinar tu primera sesión.</p>
+          <p className="text-slate-400">Completá el formulario y coordinamos tu primera sesión.</p>
         </div>
 
         <div className="bg-slate-900 border border-white/5 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
@@ -139,7 +139,7 @@ const BookingSystem: React.FC = () => {
           <div className="mt-4">
             {step === 1 && (
               <div>
-                <h3 className="text-xl font-bold text-white mb-6">Tus datos personales</h3>
+                <h3 className="text-xl font-bold text-white mb-6">Paso 1: Tus datos personales</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Nombre Completo</label>
@@ -163,7 +163,7 @@ const BookingSystem: React.FC = () => {
 
             {step === 2 && (
               <div>
-                <h3 className="text-xl font-bold text-white mb-6">Tipo de Clase y Acompañantes</h3>
+                <h3 className="text-xl font-bold text-white mb-6">Paso 2: Formato y Acompañantes</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8">
                   {LESSON_TYPES.map(l => (
                     <button
@@ -221,7 +221,7 @@ const BookingSystem: React.FC = () => {
 
             {step === 3 && (
               <div>
-                <h3 className="text-xl font-bold text-white mb-6">Tu experiencia técnica</h3>
+                <h3 className="text-xl font-bold text-white mb-6">Paso 3: Perfil Técnico</h3>
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <label className="text-sm font-bold text-slate-400">¿Cuál es tu nivel?</label>
@@ -245,7 +245,7 @@ const BookingSystem: React.FC = () => {
 
             {step === 4 && (
               <div>
-                <h3 className="text-xl font-bold text-white mb-6">Objetivos y Salud</h3>
+                <h3 className="text-xl font-bold text-white mb-6">Paso 4: Objetivos y Salud</h3>
                 <div className="space-y-4">
                   <select 
                     value={formData.objective} onChange={(e) => setFormData({...formData, objective: e.target.value})}
@@ -266,7 +266,7 @@ const BookingSystem: React.FC = () => {
 
             {step === 5 && (
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Horarios Tentativos</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Paso 5: Horarios Tentativos</h3>
                 <p className="text-xs text-slate-500 mb-6 italic">Seleccioná los turnos en los que podrías asistir (07:00 a 14:00).</p>
                 <div className="grid grid-cols-4 gap-2">
                   {AVAILABLE_TIMES.map(t => (
