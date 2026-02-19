@@ -11,7 +11,7 @@ const Features: React.FC = () => {
             <div className="relative group">
               <img 
                 src="images/about.jpg" 
-                alt="Sobre Mariano Witte" 
+                alt="Mariano Witte en acción" 
                 className="rounded-3xl shadow-2xl z-10 relative transition-all duration-500 border border-white/5"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1610411322123-0189a6977465?q=80&w=1000";
@@ -23,8 +23,8 @@ const Features: React.FC = () => {
           </div>
           
           <div className="lg:w-1/2">
-            <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Su Trayectoria</h2>
-            <h3 className="text-5xl font-extrabold text-white mb-6 leading-tight">Sobre Mariano</h3>
+            <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Conoceme</h2>
+            <h3 className="text-5xl font-extrabold text-white mb-6 leading-tight">Sobre Mí</h3>
             <p className="text-xl text-slate-300 mb-8 leading-relaxed font-light">
               {TRAINER_INFO.bio}
             </p>
@@ -44,16 +44,16 @@ const Features: React.FC = () => {
 
             <div className="flex gap-12 border-t border-white/10 pt-10">
               <div>
-                <p className="text-4xl font-black text-white">12+</p>
+                <p className="text-4xl font-black text-white">15+</p>
                 <p className="text-slate-500 text-xs uppercase tracking-widest mt-1">Años Exp.</p>
               </div>
               <div>
-                <p className="text-4xl font-black text-lime-400">APA</p>
-                <p className="text-slate-500 text-xs uppercase tracking-widest mt-1">Certificación</p>
+                <p className="text-4xl font-black text-lime-400">PRO</p>
+                <p className="text-slate-500 text-xs uppercase tracking-widest mt-1">Nivel Juego</p>
               </div>
               <div>
-                <p className="text-4xl font-black text-white">PRO</p>
-                <p className="text-slate-500 text-xs uppercase tracking-widest mt-1">Nivel Juego</p>
+                <p className="text-4xl font-black text-white">SGO</p>
+                <p className="text-slate-500 text-xs uppercase tracking-widest mt-1">Ubicación</p>
               </div>
             </div>
           </div>

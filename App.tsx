@@ -6,7 +6,6 @@ import Features from './components/Features';
 import LessonCard from './components/LessonCard';
 import BookingSystem from './components/BookingSystem';
 import WhatsAppBubble from './components/WhatsAppBubble';
-import AIChat from './components/AIChat';
 import Footer from './components/Footer';
 import { LESSON_TYPES } from './constants';
 
@@ -25,11 +24,11 @@ const App: React.FC = () => {
             <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Entrenamientos</h2>
             <h3 className="text-4xl font-extrabold text-white">Clases a tu Medida</h3>
             <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
-              Elegí el formato que mejor se adapte a tu nivel y objetivos. Trabajamos técnica, táctica y físico en cada turno.
+              Elegí el formato que mejor se adapte a tu nivel y objetivos. Trabajamos técnica, táctica y físico en cada turno conmigo.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {LESSON_TYPES.map((lesson) => (
               <LessonCard key={lesson.id} lesson={lesson} />
             ))}
@@ -42,7 +41,7 @@ const App: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-3xl font-bold mb-6">Mis Packs de Clases</h2>
-                <p className="text-slate-400 text-lg mb-8">Congelá el precio y asegurá tu progreso reservando packs mensuales. La constancia es lo que te hará subir de categoría.</p>
+                <p className="text-slate-400 text-lg mb-8">Congelá el precio y asegurá tu progreso reservando packs mensuales conmigo. La constancia es lo que te hará subir de categoría.</p>
                 
                 <div className="space-y-4">
                   {[
@@ -82,7 +81,7 @@ const App: React.FC = () => {
                     </li>
                     <li className="flex gap-3 items-center text-slate-300">
                       <span className="text-lime-500 font-bold">✓</span>
-                      <span>Mi Video Análisis Mensual</span>
+                      <span>Análisis de video (provisto por alumno de torneos previos)</span>
                     </li>
                     <li className="flex gap-3 items-center text-slate-300">
                       <span className="text-lime-500 font-bold">✓</span>
@@ -104,7 +103,6 @@ const App: React.FC = () => {
       <Footer />
       
       <WhatsAppBubble />
-      <AIChat />
     </div>
   );
 };

@@ -1,132 +1,287 @@
 
 import React, { useState } from 'react';
-import { LESSON_TYPES, AVAILABLE_TIMES, VENUES } from '../constants';
+import { LESSON_TYPES, AVAILABLE_TIMES } from '../constants';
 
 const BookingSystem: React.FC = () => {
-  const [selectedLesson, setSelectedLesson] = useState(LESSON_TYPES[0].id);
-  const [selectedVenue, setSelectedVenue] = useState(VENUES[0]);
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
-  const [bookingStatus, setBookingStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    lessonId: 'individual',
+    partners: [] as { name: string, age: string }[],
+    level: 'Desde 0',
+    side: 'Derecha',
+    objective: 'Competitivo',
+    injuries: '',
+    selectedTimes: [] as string[]
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setBookingStatus('loading');
-    setTimeout(() => {
-      setBookingStatus('success');
-      setTimeout(() => setBookingStatus('idle'), 5000);
-    }, 1500);
+  const nextStep = () => setStep(prev => Math.min(prev + 1, 5));
+  const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
+
+  const toggleTime = (time: string) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedTimes: prev.selectedTimes.includes(time) 
+        ? prev.selectedTimes.filter(t => t !== time) 
+        : [...prev.selectedTimes, time]
+    }));
+  };
+
+  const handlePartnerChange = (index: number, field: 'name' | 'age', value: string) => {
+    const newPartners = [...formData.partners];
+    newPartners[index] = { ...newPartners[index], [field]: value };
+    setFormData({ ...formData, partners: newPartners });
+  };
+
+  const updatePartnerCount = (type: string) => {
+    let count = 0;
+    if (type === 'duo') count = 1;
+    if (type === 'group') count = 3;
+    
+    const partners = Array(count).fill(0).map((_, i) => formData.partners[i] || { name: '', age: '' });
+    setFormData({ ...formData, lessonId: type, partners });
+  };
+
+  const sendToWhatsApp = () => {
+    const phoneNumber = "549385000000"; // Reemplazar por número real de Mariano
+    const lessonTitle = LESSON_TYPES.find(l => l.id === formData.lessonId)?.title;
+    
+    let partnersInfo = "";
+    if (formData.partners.length > 0) {
+      partnersInfo = "\n👥 Acompañantes:\n" + formData.partners.map((p, i) => `${i+1}. ${p.name} (${p.age} años)`).join("\n");
+    }
+
+    const message = encodeURIComponent(
+      `🎾 *NUEVA CONSULTA DE CLASE*\n\n` +
+      `👤 *Alumno:* ${formData.name} (${formData.age} años)\n` +
+      `🏆 *Clase:* ${lessonTitle}${partnersInfo}\n\n` +
+      `📊 *Nivel:* ${formData.level}\n` +
+      `↔️ *Posición:* ${formData.side}\n` +
+      `🎯 *Objetivo:* ${formData.objective}\n` +
+      `⚠️ *Lesiones:* ${formData.injuries || 'Ninguna'}\n\n` +
+      `⏰ *Disponibilidad horaria:* ${formData.selectedTimes.join(", ")}\n\n` +
+      `_Enviado desde la web oficial de Mariano Witte_`
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
   return (
     <section id="booking" className="py-24 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-              Reservar un turno con Mariano
-            </h2>
-            <p className="text-lg text-slate-400 mb-8">
-              Seleccione el tipo de entrenamiento, lugar y horario de su preferencia. Mariano se pondrá en contacto por WhatsApp para confirmar la disponibilidad de cancha.
-            </p>
-            
-            <div className="space-y-6">
-              <div className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5">
-                <div className="w-12 h-12 bg-lime-500/10 rounded-full flex items-center justify-center text-lime-500 text-xl">📍</div>
-                <div>
-                  <h4 className="font-bold text-white">Flexibilidad de Lugar</h4>
-                  <p className="text-sm text-slate-500">Entrenamientos en PadelManía o en el club que usted elija coordinando previamente.</p>
-                </div>
-              </div>
-              <div className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl">★</div>
-                <div>
-                  <h4 className="font-bold text-white">Análisis de Video</h4>
-                  <p className="text-sm text-slate-500">Mariano utiliza tecnología de video para analizar y corregir posturas durante la sesión.</p>
-                </div>
-              </div>
-            </div>
+      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
+            Empezá a entrenar conmigo
+          </h2>
+          <p className="text-slate-400">
+            Completá este breve formulario para que pueda conocer tu perfil y coordinemos tu primera clase.
+          </p>
+        </div>
+
+        <div className="bg-slate-900 border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+          {/* Progress Bar */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-slate-800">
+            <div 
+              className="h-full bg-lime-500 transition-all duration-500" 
+              style={{ width: `${(step / 5) * 100}%` }}
+            ></div>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-slate-900 p-8 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-lime-500/5 -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl"></div>
-            <div className="space-y-6 relative z-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-400 mb-2">Tipo de Clase</label>
-                  <select 
-                    value={selectedLesson}
-                    onChange={(e) => setSelectedLesson(e.target.value)}
-                    className="w-full bg-slate-800 border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all appearance-none"
-                    required
-                  >
-                    {LESSON_TYPES.map(l => (
-                      <option key={l.id} value={l.id} className="bg-slate-900">{l.title}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-400 mb-2">Club Sugerido</label>
-                  <select 
-                    value={selectedVenue}
-                    onChange={(e) => setSelectedVenue(e.target.value)}
-                    className="w-full bg-slate-800 border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all appearance-none"
-                    required
-                  >
-                    {VENUES.map(v => (
-                      <option key={v} value={v} className="bg-slate-900">{v}</option>
-                    ))}
-                  </select>
+          {/* Steps */}
+          <div className="mt-4">
+            {step === 1 && (
+              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                <h3 className="text-xl font-bold text-white mb-6">Contame sobre vos</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-2">Nombre completo</label>
+                    <input 
+                      type="text" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-lime-500 outline-none"
+                      placeholder="Ej: Juan Perez"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-2">Edad</label>
+                    <input 
+                      type="number" 
+                      value={formData.age}
+                      onChange={(e) => setFormData({...formData, age: e.target.value})}
+                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-lime-500 outline-none"
+                      placeholder="Ej: 28"
+                    />
+                  </div>
                 </div>
               </div>
+            )}
 
-              <div>
-                <label className="block text-sm font-semibold text-slate-400 mb-2">Fecha Tentativa</label>
-                <input 
-                  type="date" 
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full bg-slate-800 border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-all [color-scheme:dark]"
-                  required
-                  min={new Date().toISOString().split('T')[0]}
-                />
+            {step === 2 && (
+              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                <h3 className="text-xl font-bold text-white mb-6">¿Qué tipo de clase buscás?</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {LESSON_TYPES.map(lesson => (
+                    <button
+                      key={lesson.id}
+                      onClick={() => updatePartnerCount(lesson.id)}
+                      className={`p-4 rounded-xl border transition-all text-center ${
+                        formData.lessonId === lesson.id 
+                        ? 'border-lime-500 bg-lime-500/10 text-lime-400' 
+                        : 'border-white/10 bg-slate-800 text-slate-400 hover:border-white/20'
+                      }`}
+                    >
+                      <div className="text-2xl mb-1">{lesson.icon}</div>
+                      <div className="font-bold text-sm">{lesson.title}</div>
+                    </button>
+                  ))}
+                </div>
+                
+                {formData.partners.length > 0 && (
+                  <div className="space-y-4 pt-4 border-t border-white/5">
+                    <p className="text-sm font-bold text-slate-400">Datos de tus compañeros:</p>
+                    {formData.partners.map((partner, idx) => (
+                      <div key={idx} className="grid grid-cols-2 gap-3">
+                        <input 
+                          placeholder={`Nombre Acompañante ${idx + 1}`}
+                          value={partner.name}
+                          onChange={(e) => handlePartnerChange(idx, 'name', e.target.value)}
+                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
+                        />
+                        <input 
+                          type="number"
+                          placeholder="Edad"
+                          value={partner.age}
+                          onChange={(e) => handlePartnerChange(idx, 'age', e.target.value)}
+                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
+            )}
 
-              <div>
-                <label className="block text-sm font-semibold text-slate-400 mb-2">Horarios Disponibles</label>
-                <div className="grid grid-cols-4 gap-2">
+            {step === 3 && (
+              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                <h3 className="text-xl font-bold text-white mb-6">Tu experiencia</h3>
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-3">¿Cuál es tu nivel actual?</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['Desde 0', 'Principiante', 'Intermedio', 'Avanzado'].map(lvl => (
+                        <button
+                          key={lvl}
+                          onClick={() => setFormData({...formData, level: lvl})}
+                          className={`py-2 px-4 rounded-lg border text-sm font-semibold transition-all ${
+                            formData.level === lvl ? 'bg-lime-500 border-lime-500 text-black' : 'border-white/10 bg-slate-800 text-slate-400'
+                          }`}
+                        >
+                          {lvl}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-3">¿En qué posición jugás?</label>
+                    <div className="flex gap-2">
+                      {['Derecha', 'Revés', 'Ambos'].map(side => (
+                        <button
+                          key={side}
+                          onClick={() => setFormData({...formData, side: side})}
+                          className={`flex-1 py-2 px-4 rounded-lg border text-sm font-semibold transition-all ${
+                            formData.side === side ? 'bg-lime-500 border-lime-500 text-black' : 'border-white/10 bg-slate-800 text-slate-400'
+                          }`}
+                        >
+                          {side}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {step === 4 && (
+              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                <h3 className="text-xl font-bold text-white mb-6">Objetivos y Salud</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-2">Tu objetivo principal</label>
+                    <select 
+                      value={formData.objective}
+                      onChange={(e) => setFormData({...formData, objective: e.target.value})}
+                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white outline-none"
+                    >
+                      <option value="Competitivo">Mejorar para competir (Torneos)</option>
+                      <option value="Recreativo">Social y recreativo</option>
+                      <option value="Fisico">Mejorar estado físico</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-2">¿Alguna lesión o condición física?</label>
+                    <textarea 
+                      value={formData.injuries}
+                      onChange={(e) => setFormData({...formData, injuries: e.target.value})}
+                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white h-24 outline-none resize-none"
+                      placeholder="Ej: Dolor recurrente en hombro derecho..."
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {step === 5 && (
+              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                <h3 className="text-xl font-bold text-white mb-4">¿En qué horarios podés entrenar?</h3>
+                <p className="text-xs text-slate-500 mb-6 italic">Seleccioná todos los que te queden bien entre las 07:00 y las 15:00.</p>
+                <div className="grid grid-cols-3 gap-2">
                   {AVAILABLE_TIMES.map(time => (
                     <button
                       key={time}
-                      type="button"
-                      onClick={() => setSelectedTime(time)}
-                      className={`py-2 px-1 rounded-lg text-xs font-bold border transition-all ${
-                        selectedTime === time 
-                          ? 'bg-lime-500 border-lime-500 text-black shadow-[0_0_15px_rgba(163,230,53,0.3)]' 
-                          : 'bg-slate-800 border-white/10 text-slate-400 hover:border-lime-500/50'
+                      onClick={() => toggleTime(time)}
+                      className={`py-2 rounded-lg border text-xs font-bold transition-all ${
+                        formData.selectedTimes.includes(time) 
+                        ? 'bg-lime-500 border-lime-500 text-black' 
+                        : 'border-white/10 bg-slate-800 text-slate-400'
                       }`}
                     >
-                      {time}
+                      {time} HS
                     </button>
                   ))}
                 </div>
               </div>
+            )}
+          </div>
 
-              {bookingStatus === 'success' ? (
-                <div className="bg-lime-500/10 text-lime-400 p-4 rounded-xl text-center font-bold border border-lime-500/20 animate-pulse">
-                  Solicitud enviada. Recibirá un WhatsApp en breve.
-                </div>
-              ) : (
-                <button
-                  type="submit"
-                  disabled={bookingStatus === 'loading'}
-                  className="w-full bg-lime-500 text-black py-4 rounded-xl font-extrabold text-lg hover:bg-lime-400 disabled:opacity-50 transition-all shadow-lg shadow-lime-500/20"
-                >
-                  {bookingStatus === 'loading' ? 'Procesando...' : 'Solicitar Turno'}
-                </button>
-              )}
-            </div>
-          </form>
+          {/* Navigation */}
+          <div className="mt-10 flex justify-between gap-4">
+            {step > 1 && (
+              <button 
+                onClick={prevStep}
+                className="px-6 py-3 rounded-xl border border-white/10 text-white font-bold hover:bg-white/5 transition-all"
+              >
+                Anterior
+              </button>
+            )}
+            {step < 5 ? (
+              <button 
+                onClick={nextStep}
+                disabled={step === 1 && !formData.name}
+                className="flex-1 bg-white text-black py-3 rounded-xl font-bold hover:bg-slate-200 disabled:opacity-50 transition-all"
+              >
+                Siguiente
+              </button>
+            ) : (
+              <button 
+                onClick={sendToWhatsApp}
+                disabled={formData.selectedTimes.length === 0}
+                className="flex-1 bg-lime-500 text-black py-3 rounded-xl font-extrabold hover:bg-lime-400 disabled:opacity-50 transition-all shadow-lg shadow-lime-500/20"
+              >
+                Finalizar y Enviar WhatsApp
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>

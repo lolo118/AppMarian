@@ -23,19 +23,19 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold text-white">Witte<span className="text-lime-400">PadelPro</span></span>
             </div>
             <p className="max-w-md text-slate-500">
-              Formación profesional de pádel enfocada en la técnica avanzada y la mentalidad ganadora. Entrenamiento de élite en Santiago del Estero.
+              Mi formación profesional de pádel está enfocada en tu técnica avanzada y mentalidad ganadora. Entrená conmigo en Santiago del Estero.
             </p>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-6">Explorar</h4>
+            <h4 className="text-white font-bold mb-6">Navegación</h4>
             <ul className="space-y-4">
-              <li><a href="#about" className="hover:text-lime-400 transition-colors">Sobre Mariano</a></li>
-              <li><a href="#lessons" className="hover:text-lime-400 transition-colors">Clases</a></li>
+              <li><a href="#about" className="hover:text-lime-400 transition-colors">Sobre Mí</a></li>
+              <li><a href="#lessons" className="hover:text-lime-400 transition-colors">Mis Clases</a></li>
               <li><a href="#booking" className="hover:text-lime-400 transition-colors">Reservar Turno</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-6">Contacto</h4>
+            <h4 className="text-white font-bold mb-6">Contacto Directo</h4>
             <p className="text-slate-200 mb-2 font-bold uppercase tracking-tighter">Mariano Witte</p>
             <p className="text-slate-500 mb-4 italic text-sm">Santiago del Estero, Argentina</p>
             <div className="flex gap-4">
@@ -44,8 +44,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest font-bold">
-          <p>© 2024 Witte Padel Pro • Sitio Oficial de Mariano Witte</p>
-          <p>Potenciando el Pádel Argentino</p>
+          <p>© 2024 Witte Padel Pro • Mi Sitio Oficial</p>
+          <p>Potenciando tu juego en cada clase</p>
         </div>
       </div>
     </footer>
