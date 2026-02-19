@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
       ))}
       
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+      <div className="absolute inset-0 z-10 bg-gradient-t from-slate-950 via-transparent to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20">
         <div className="max-w-2xl">

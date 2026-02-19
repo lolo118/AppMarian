@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LESSON_TYPES, AVAILABLE_TIMES } from '../constants';
 
 const BookingSystem: React.FC = () => {
@@ -15,6 +15,19 @@ const BookingSystem: React.FC = () => {
     injuries: '',
     selectedTimes: [] as string[]
   });
+
+  // Listener para selección desde las tarjetas externas
+  useEffect(() => {
+    const handleExternalSelect = (e: any) => {
+      const selectedId = e.detail.lessonId;
+      updatePartnerCount(selectedId);
+      // Opcionalmente podemos resetear el wizard al paso 1 si el usuario ya estaba navegando
+      setStep(1);
+    };
+
+    window.addEventListener('selectLesson', handleExternalSelect);
+    return () => window.removeEventListener('selectLesson', handleExternalSelect);
+  }, [formData.partners]);
 
   const nextStep = () => setStep(prev => Math.min(prev + 1, 5));
   const prevStep = () => setStep(prev => Math.max(prev - 1, 1));
@@ -40,16 +53,16 @@ const BookingSystem: React.FC = () => {
     if (type === 'group') count = 3;
     
     const partners = Array(count).fill(0).map((_, i) => formData.partners[i] || { name: '', age: '' });
-    setFormData({ ...formData, lessonId: type, partners });
+    setFormData(prev => ({ ...prev, lessonId: type, partners }));
   };
 
   const sendToWhatsApp = () => {
-    const phoneNumber = "549385000000"; // Reemplazar por número real de Mariano
+    const phoneNumber = "549385000000"; // Número de Mariano
     const lessonTitle = LESSON_TYPES.find(l => l.id === formData.lessonId)?.title;
     
     let partnersInfo = "";
     if (formData.partners.length > 0) {
-      partnersInfo = "\n👥 Acompañantes:\n" + formData.partners.map((p, i) => `${i+1}. ${p.name} (${p.age} años)`).join("\n");
+      partnersInfo = "\n👥 Acompañantes:\n" + formData.partners.map((p, i) => `${i+1}. ${p.name || 'Sin nombre'} (${p.age || '?'} años)`).join("\n");
     }
 
     const message = encodeURIComponent(
@@ -146,14 +159,14 @@ const BookingSystem: React.FC = () => {
                           placeholder={`Nombre Acompañante ${idx + 1}`}
                           value={partner.name}
                           onChange={(e) => handlePartnerChange(idx, 'name', e.target.value)}
-                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
+                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:ring-1 focus:ring-lime-500 outline-none"
                         />
                         <input 
                           type="number"
                           placeholder="Edad"
                           value={partner.age}
                           onChange={(e) => handlePartnerChange(idx, 'age', e.target.value)}
-                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
+                          className="bg-slate-800 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:ring-1 focus:ring-lime-500 outline-none"
                         />
                       </div>
                     ))}
@@ -174,7 +187,7 @@ const BookingSystem: React.FC = () => {
                           key={lvl}
                           onClick={() => setFormData({...formData, level: lvl})}
                           className={`py-2 px-4 rounded-lg border text-sm font-semibold transition-all ${
-                            formData.level === lvl ? 'bg-lime-500 border-lime-500 text-black' : 'border-white/10 bg-slate-800 text-slate-400'
+                            formData.level === lvl ? 'bg-lime-500 border-lime-500 text-black shadow-lg shadow-lime-500/20' : 'border-white/10 bg-slate-800 text-slate-400 hover:border-white/20'
                           }`}
                         >
                           {lvl}
@@ -190,7 +203,7 @@ const BookingSystem: React.FC = () => {
                           key={side}
                           onClick={() => setFormData({...formData, side: side})}
                           className={`flex-1 py-2 px-4 rounded-lg border text-sm font-semibold transition-all ${
-                            formData.side === side ? 'bg-lime-500 border-lime-500 text-black' : 'border-white/10 bg-slate-800 text-slate-400'
+                            formData.side === side ? 'bg-lime-500 border-lime-500 text-black shadow-lg shadow-lime-500/20' : 'border-white/10 bg-slate-800 text-slate-400 hover:border-white/20'
                           }`}
                         >
                           {side}
@@ -211,7 +224,7 @@ const BookingSystem: React.FC = () => {
                     <select 
                       value={formData.objective}
                       onChange={(e) => setFormData({...formData, objective: e.target.value})}
-                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white outline-none"
+                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:ring-2 focus:ring-lime-500"
                     >
                       <option value="Competitivo">Mejorar para competir (Torneos)</option>
                       <option value="Recreativo">Social y recreativo</option>
@@ -223,7 +236,7 @@ const BookingSystem: React.FC = () => {
                     <textarea 
                       value={formData.injuries}
                       onChange={(e) => setFormData({...formData, injuries: e.target.value})}
-                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white h-24 outline-none resize-none"
+                      className="w-full bg-slate-800 border border-white/10 rounded-xl px-4 py-3 text-white h-24 outline-none resize-none focus:ring-2 focus:ring-lime-500"
                       placeholder="Ej: Dolor recurrente en hombro derecho..."
                     ></textarea>
                   </div>
@@ -242,8 +255,8 @@ const BookingSystem: React.FC = () => {
                       onClick={() => toggleTime(time)}
                       className={`py-2 rounded-lg border text-xs font-bold transition-all ${
                         formData.selectedTimes.includes(time) 
-                        ? 'bg-lime-500 border-lime-500 text-black' 
-                        : 'border-white/10 bg-slate-800 text-slate-400'
+                        ? 'bg-lime-500 border-lime-500 text-black shadow-lg shadow-lime-500/20' 
+                        : 'border-white/10 bg-slate-800 text-slate-400 hover:border-white/20'
                       }`}
                     >
                       {time} HS
