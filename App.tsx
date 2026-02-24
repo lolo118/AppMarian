@@ -4,16 +4,20 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import LessonCard from './components/LessonCard';
+import Gallery from './components/Gallery';
 import BookingSystem from './components/BookingSystem';
+import AIChat from './components/AIChat';
 import WhatsAppBubble from './components/WhatsAppBubble';
 import Footer from './components/Footer';
 import { LESSON_TYPES, PACKS } from './constants';
 
 const App: React.FC = () => {
   const handleSelectPack = (packId: string) => {
+    // Despachar evento para que BookingSystem lo capture
     const event = new CustomEvent('selectPack', { detail: { packId } });
     window.dispatchEvent(event);
     
+    // Scroll suave a la sección de reservas
     const bookingSection = document.getElementById('booking');
     if (bookingSection) {
       bookingSection.scrollIntoView({ behavior: 'smooth' });
@@ -52,7 +56,7 @@ const App: React.FC = () => {
               <div>
                 <h2 className="text-3xl font-bold mb-4">Asegurá tu progreso con un pack</h2>
                 <p className="text-slate-400 text-lg mb-4">Pagá por adelantado, congelá el precio y empezá a notar la diferencia.</p>
-                <p className="text-xs text-slate-500 mb-8 italic">* Los packs tienen un 100% de pago por adelantado para mantener el beneficio del descuento.</p>
+                <p className="text-xs text-slate-500 mb-8 italic">* Los packs requieren 100% de pago por adelantado para mantener el beneficio.</p>
                 
                 <div className="space-y-4">
                   {PACKS.filter(p => !p.isSpecial).map((pkg) => (
@@ -95,7 +99,7 @@ const App: React.FC = () => {
                     </li>
                     <li className="flex gap-3 items-center text-slate-300 text-sm">
                       <span className="text-lime-500 font-bold">✓</span>
-                      <span>Análisis de video (material provisto por vos)</span>
+                      <span>Análisis de video profesional</span>
                     </li>
                     <li className="flex gap-3 items-center text-slate-300 text-sm">
                       <span className="text-lime-500 font-bold">✓</span>
@@ -115,11 +119,14 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        <Gallery />
+
         <BookingSystem />
       </main>
 
       <Footer />
       
+      <AIChat />
       <WhatsAppBubble />
     </div>
   );
