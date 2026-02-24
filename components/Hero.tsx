@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 const Hero: React.FC = () => {
   /**
    * INSTRUCCIONES PARA CAMBIAR LA IMAGEN:
-   * 1. Subí tu imagen a la carpeta 'public/images/'.
-   * 2. Cambiá el nombre en el array de abajo. 
-   * Ejemplo: "images/mi_foto_nueva.jpg"
+   * Para cambiar la imagen de fondo, reemplazá el archivo 'public/images/hero.jpg' con tu propia imagen.
+   * Asegurate de mantener el mismo nombre de archivo ('hero.jpg').
+   * No es necesario modificar el código.
    */
   const images = [
     "images/hero.jpg", // Esta es la imagen principal

@@ -9,6 +9,7 @@ const Features: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <div className="relative group">
+              {/* Para cambiar esta imagen, reemplazá 'public/images/about.jpg' con tu propia imagen manteniendo el nombre. */}
               <img 
                 src="images/about.jpg" 
                 alt="Mariano Witte - Profesor de Padel" 
