@@ -4,9 +4,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import LessonCard from './components/LessonCard';
-import Gallery from './components/Gallery';
 import BookingSystem from './components/BookingSystem';
-import AIChat from './components/AIChat';
 import WhatsAppBubble from './components/WhatsAppBubble';
 import Footer from './components/Footer';
 import { LESSON_TYPES, PACKS } from './constants';
@@ -119,14 +117,11 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <Gallery />
-
         <BookingSystem />
       </main>
 
       <Footer />
       
-      <AIChat />
       <WhatsAppBubble />
     </div>
   );

@@ -2,15 +2,14 @@
 import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
-  // Las imágenes deben estar en la carpeta public/images/
+  /**
+   * INSTRUCCIONES PARA CAMBIAR LA IMAGEN:
+   * 1. Subí tu imagen a la carpeta 'public/images/'.
+   * 2. Cambiá el nombre en el array de abajo. 
+   * Ejemplo: "images/mi_foto_nueva.jpg"
+   */
   const images = [
-    "images/hero.jpg",
-    "images/gallery-1.jpg",
-    "images/gallery-2.jpg",
-    "images/gallery-3.jpg",
-    "images/gallery-4.jpg",
-    "images/gallery-5.jpg",
-    "images/about.jpg"
+    "images/hero.jpg", // Esta es la imagen principal
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -26,26 +25,27 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative h-[90vh] flex items-center overflow-hidden bg-black">
-      {/* Background Images Layer */}
+      {/* Background Layer */}
       {images.map((img, index) => (
         <div
           key={img}
           className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentImageIndex ? 'opacity-50' : 'opacity-0'
+            index === currentImageIndex ? 'opacity-60' : 'opacity-0'
           }`}
         >
           <img
             src={img}
-            alt={`Mariano Witte - Acción ${index + 1}`}
+            alt={`Mariano Witte - Fondo ${index + 1}`}
             className="h-full w-full object-cover object-center"
             onError={(e) => {
+              // Imagen de respaldo por si el usuario aún no subió la suya
               (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=2000&auto=format&fit=crop`;
             }}
           />
         </div>
       ))}
       
-      {/* Overlays */}
+      {/* Gradients para mejorar legibilidad */}
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
 
@@ -70,19 +70,21 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Pagination Dots */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImageIndex(index)}
-            className={`h-1.5 transition-all duration-300 rounded-full ${
-              index === currentImageIndex ? 'w-8 bg-lime-500' : 'w-2 bg-white/30'
-            }`}
-            aria-label={`Ir a imagen ${index + 1}`}
-          />
-        ))}
-      </div>
+      {/* Indicadores de página (solo si hay más de una imagen) */}
+      {images.length > 1 && (
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`h-1.5 transition-all duration-300 rounded-full ${
+                index === currentImageIndex ? 'w-8 bg-lime-500' : 'w-2 bg-white/30'
+              }`}
+              aria-label={`Ir a imagen ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
