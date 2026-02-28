@@ -24,18 +24,18 @@ const Features: React.FC = () => {
           <div className="lg:w-1/2">
             <h2 className="text-lime-500 font-bold tracking-wider uppercase text-sm mb-2">Conocé al Profe</h2>
             <h3 className="text-5xl font-extrabold text-white mb-6 leading-tight">Mariano Witte</h3>
-            <p className="text-lg text-slate-300 mb-12 leading-relaxed">
+            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
               {TRAINER_INFO.bio}
             </p>
             
 
-            <div className="flex flex-wrap gap-12 border-t border-white/10 pt-10">
-              <div className="group/stat">
-                <p className="text-4xl font-black text-white group-hover/stat:text-lime-400 transition-colors">15+</p>
+            <div className="flex gap-12 border-t border-white/10 pt-10">
+              <div>
+                <p className="text-4xl font-black text-white">15+</p>
                 <p className="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Años Exp.</p>
               </div>
-              <div className="group/stat">
-                <p className="text-4xl font-black text-white group-hover/stat:text-lime-400 transition-colors">SGO</p>
+              <div>
+                <p className="text-4xl font-black text-white">SGO</p>
                 <p className="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Ubicación</p>
               </div>
             </div>
