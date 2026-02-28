@@ -29,6 +29,8 @@ const App: React.FC = () => {
       <main>
         <Hero />
         
+        <div className="h-24 bg-gradient-to-b from-black to-slate-950"></div>
+        
         <Features />
 
         <section id="lessons" className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
