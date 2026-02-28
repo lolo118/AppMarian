@@ -4,7 +4,7 @@ import { LessonType, TrainerInfo } from './types';
 export const TRAINER_INFO: TrainerInfo = {
   name: "Mariano Witte",
   bio: "Soy Mariano Witte, profesor de alto rendimiento especializado en técnica de competición. Mi enfoque se centra en la corrección precisa de golpes y el desarrollo de táctica avanzada. Mi objetivo es potenciar tus habilidades y darte las herramientas para que compitas con confianza y estrategia.",
-  specialties: ["Técnica de Smash", "Táctica de Competición", "Defensa de Paredes", "Voleas de Definición"],
+  specialties: [],
   experience: "15+ Años",
   achievements: ["Ex Jugador Profesional", "Especialista en Menores y Adultos"]
 };
