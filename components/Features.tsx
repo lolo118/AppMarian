@@ -9,7 +9,6 @@ const Features: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <div className="relative group">
-              {/* Para cambiar esta imagen, reemplazá 'public/images/about.jpg' con tu propia imagen manteniendo el nombre. */}
               <img 
                 src="images/about.jpg" 
                 alt="Mariano Witte - Profesor de Padel" 
@@ -29,27 +28,11 @@ const Features: React.FC = () => {
               {TRAINER_INFO.bio}
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-              {TRAINER_INFO.specialties.map((spec, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:border-lime-500/30 transition-colors">
-                  <div className="w-8 h-8 bg-lime-500/10 rounded-lg flex items-center justify-center text-lime-500">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                  <span className="font-semibold text-slate-200 text-sm">{spec}</span>
-                </div>
-              ))}
-            </div>
 
             <div className="flex gap-12 border-t border-white/10 pt-10">
               <div>
                 <p className="text-4xl font-black text-white">15+</p>
                 <p className="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Años Exp.</p>
-              </div>
-              <div>
-                <p className="text-4xl font-black text-lime-400">PRO</p>
-                <p className="text-slate-500 text-[10px] uppercase tracking-widest mt-1">Nivel Juego</p>
               </div>
               <div>
                 <p className="text-4xl font-black text-white">SGO</p>
