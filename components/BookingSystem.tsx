@@ -111,11 +111,11 @@ const BookingSystem: React.FC = () => {
     
     if (pack) {
       msg += `🏆 *Pack Elegido:* ${pack.name}\n`;
-      msg += `💰 *Costo Total:* $${pack.finalPrice.toLocaleString('es-AR')}\n`;
-      msg += `📊 *Beneficio:* ${pack.discount} OFF\n\n`;
+      msg += `💰 *Precio Final:* $${pack.finalPrice.toLocaleString('es-AR')}\n`;
+      msg += `📊 *Descuento:* ${pack.discount} OFF\n\n`;
     } else {
       msg += `🏆 *Clase:* ${lesson?.title}\n`;
-      msg += `💰 *Costo:* $${lesson?.price.toLocaleString('es-AR')}\n\n`;
+      msg += `💰 *Precio Final:* $${lesson?.price.toLocaleString('es-AR')}\n\n`;
     }
     
     msg += `👤 *ALUMNO PRINCIPAL:*\n`;

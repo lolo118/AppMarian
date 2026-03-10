@@ -5,11 +5,12 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    // Definimos process.env como un objeto para evitar errores de "process is not defined"
-    'process.env': {
-      API_KEY: JSON.stringify(process.env.API_KEY),
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-    }
+    'process.env.GEMINI_API_KEY': JSON.stringify(process.env.GEMINI_API_KEY)
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    allowedHosts: true
   },
   build: {
     outDir: 'dist',

@@ -3,7 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 import { TRAINER_INFO, LESSON_TYPES } from "../constants";
 
 const getAIClient = () => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   return new GoogleGenAI({ apiKey: apiKey || '' });
 };
 

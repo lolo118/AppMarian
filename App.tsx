@@ -68,8 +68,8 @@ const App: React.FC = () => {
                         <p className="text-slate-500 text-sm">{pkg.sessions} Clases con cancha incluida</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-lime-400 font-extrabold">{pkg.discount} OFF</p>
-                        <p className="text-[10px] text-slate-600 uppercase tracking-tighter italic">Ahorro Directo</p>
+                        <p className="text-2xl font-black text-white">${pkg.finalPrice.toLocaleString('es-AR')}</p>
+                        <p className="text-lime-400 font-bold text-sm">{pkg.discount} OFF</p>
                       </div>
                     </button>
                   ))}
